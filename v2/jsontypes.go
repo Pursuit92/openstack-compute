@@ -1,9 +1,9 @@
 package compute
 
 import (
-	"github.com/Pursuit92/openstack/core"
-	glance "github.com/Pursuit92/openstack/image/v2"
-	neutron "github.com/Pursuit92/openstack/network/v2_0"
+	"github.com/Pursuit92/openstack-core"
+	glance "github.com/Pursuit92/openstack-image/v2"
+	neutron "github.com/Pursuit92/openstack-network/v2_0"
 )
 
 type Image glance.Image
@@ -74,4 +74,10 @@ type Flavor struct {
 	Disk  int `json:"disk,omitempty"`
 	Ram   int `json:"ram,omitempty"`
 	Vcpus int `json:"vcpus,omitempty"`
+}
+
+type Keypair struct {
+	Fingerprint string `json:"fingerprint,omitempty"`
+	Name string `json:"name,omitempty"`
+	PublicKey string `json:"public_key,omitempty"`
 }
