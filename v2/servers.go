@@ -18,8 +18,7 @@ func (cc *ComputeClient) ServersDetail() ([]*Server, error) {
 	return resp["servers"], err
 }
 
-func (cc *ComputeClient) Details(srv *Server) (*Server, error) {
-	serverId := srv.Id
+func (cc *ComputeClient) Details(serverId string) (*Server, error) {
 	resp := make(map[string]*Server)
 
 	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/servers/"+serverId, nil, &resp)

@@ -18,9 +18,9 @@ func (cc *ComputeClient) FlavorsDetail() ([]*Flavor, error) {
 	return resp["flavors"], nil
 }
 
-func (cc *ComputeClient) FlavorDetails(flav *Flavor) (*Flavor, error) {
+func (cc *ComputeClient) FlavorDetails(flavId string) (*Flavor, error) {
 	resp := make(map[string]*Flavor)
-	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/flavors/"+flav.Id, nil, &resp)
+	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/flavors/"+flavId, nil, &resp)
 	if err != nil {
 		return nil, err
 	}

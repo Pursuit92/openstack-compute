@@ -23,9 +23,9 @@ type ServerDetail struct {
 	TenantId       string               `json:"tenant_id,omitempty"`
 	Status         string               `json:"status,omitempty"`
 	Progress       int                  `json:"progress,omitempty"`
-	Image          Image                `json:"image,omitempty"`
+	Image          *Image                `json:"image,omitempty"`
 	HostId         string               `json:"host_id,omitempty"`
-	Flavor         Flavor               `json:"flavor,omitempty"`
+	Flavor         *Flavor               `json:"flavor,omitempty"`
 	KeyName        string               `json:"key_name,omitempty"`
 	Created        string               `json:"created,omitempty"`
 	Addresses      map[string][]Address `json:"addresses,omitempty"`

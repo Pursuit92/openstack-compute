@@ -22,7 +22,7 @@ func (cc *ComputeClient) ServerByName(name string) (*Server, error) {
 	}
 	for _,v := range srvs {
 		if v.Name == name {
-			srv,err := cc.Details(v)
+			srv,err := cc.Details(v.Id)
 			if err == nil {
 				return srv,nil
 			}
@@ -39,7 +39,7 @@ func (cc *ComputeClient) ImageByName(name string) (*Image,error) {
 	}
 	for _,v := range imgs {
 		if v.Name == name {
-			img,err := cc.ImageDetails(v)
+			img,err := cc.ImageDetails(v.Id)
 			if err == nil {
 				return img,nil
 			}
@@ -56,7 +56,7 @@ func (cc *ComputeClient) FlavorByName(name string) (*Flavor,error) {
 	}
 	for _,v := range flavs {
 		if v.Name == name {
-			flav,err := cc.FlavorDetails(v)
+			flav,err := cc.FlavorDetails(v.Id)
 			if err == nil {
 				return flav,nil
 			}

@@ -26,6 +26,19 @@ func (cc *ComputeClient) Authenticate() error {
 	if err != nil {
 		return err
 	}
+	tenants, err := cc.Tenants()
+	if err != nil {
+		return err
+	}
+	if len(tenants) > 0 {
+		cc.TenantId(tenants[0].Id)
+		for _,v := range tenants {
+			if v.Name == cc.Username() {
+				cc.TenantId(v.Id)
+			}
+		}
+	}
+	cc.IdentityClient.Authenticate()
 
 	found := false
 	for _, v := range cc.Access.ServiceCatalog {

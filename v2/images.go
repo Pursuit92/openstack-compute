@@ -1,5 +1,24 @@
 package compute
 
+import (
+	"encoding/json"
+	glance "github.com/Pursuit92/openstack-image/v2"
+)
+
+func (img *Image) UnmarshalJSON(b []byte) error {
+	if len(b) > 2 {
+		newImg := &glance.Image{}
+
+		err := json.Unmarshal(b,newImg)
+		if err != nil {
+			return err
+		}
+		*img = Image(*newImg)
+		return nil
+	}
+	return nil
+}
+
 func (cc *ComputeClient) Images() ([]*Image, error) {
 	resp := make(map[string][]*Image)
 	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/images", nil, &resp)
@@ -18,9 +37,9 @@ func (cc *ComputeClient) ImagesDetail() ([]*Image, error) {
 	return resp["images"], nil
 }
 
-func (cc *ComputeClient) ImageDetails(img *Image) (*Image, error) {
+func (cc *ComputeClient) ImageDetails(imgId string) (*Image, error) {
 	resp := make(map[string]*Image)
-	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/images/"+img.Id, nil, &resp)
+	err := cc.AuthedReq("GET", cc.Endpoint.PublicUrl+"/images/"+imgId, nil, &resp)
 	if err != nil {
 		return nil, err
 	}
