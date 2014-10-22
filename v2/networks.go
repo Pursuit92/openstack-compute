@@ -1,4 +1,4 @@
-package compute
+package nova
 
 func (cc *ComputeClient) Networks() ([]*Network, error) {
 	resp := make(map[string][]*Network)

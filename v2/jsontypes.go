@@ -1,4 +1,4 @@
-package compute
+package nova
 
 import (
 	"github.com/Pursuit92/openstack-core"

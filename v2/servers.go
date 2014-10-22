@@ -1,4 +1,4 @@
-package compute
+package nova
 
 func (cc *ComputeClient) Servers() ([]*Server, error) {
 	resp := make(map[string][]*Server)
@@ -28,8 +28,8 @@ func (cc *ComputeClient) Details(serverId string) (*Server, error) {
 	return resp["server"], nil
 }
 
-func (cc *ComputeClient) Delete(srv *Server) error {
-	serverId := srv.Id
+func (cc *ComputeClient) Delete(id string) error {
+	serverId := id
 	return cc.AuthedReq("DELETE", cc.Endpoint.PublicUrl+"/servers/"+serverId, nil, nil)
 }
 

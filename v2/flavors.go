@@ -1,4 +1,4 @@
-package compute
+package nova
 
 func (cc *ComputeClient) Flavors() ([]*Flavor, error) {
 	resp := make(map[string][]*Flavor)

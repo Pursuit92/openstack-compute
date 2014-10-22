@@ -1,4 +1,4 @@
-package compute
+package nova
 
 func (cc *ComputeClient) Keypairs() ([]*Keypair, error) {
 	resp := make(map[string][]map[string]*Keypair) // lol wtf the keypair response is weird
