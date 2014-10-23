@@ -11,7 +11,9 @@ type Network neutron.Network
 
 // Fully describes a server
 type Server struct {
-	core.OsObj
+	Name  string      `json:"name,omitempty"`
+	Id    string      `json:"id,omitempty"`
+	Links []core.Link `json:"links,omitempty"`
 	*ServerDetail
 	*ServerCreate
 	*CreateResp
@@ -23,9 +25,9 @@ type ServerDetail struct {
 	TenantId       string               `json:"tenant_id,omitempty"`
 	Status         string               `json:"status,omitempty"`
 	Progress       int                  `json:"progress,omitempty"`
-	Image          *Image                `json:"image,omitempty"`
+	Image          *Image               `json:"image,omitempty"`
 	HostId         string               `json:"host_id,omitempty"`
-	Flavor         *Flavor               `json:"flavor,omitempty"`
+	Flavor         *Flavor              `json:"flavor,omitempty"`
 	KeyName        string               `json:"key_name,omitempty"`
 	Created        string               `json:"created,omitempty"`
 	Addresses      map[string][]Address `json:"addresses,omitempty"`
@@ -49,7 +51,7 @@ type ServerCreate struct {
 	FlavorRef        string            `json:"flavorRef,omitempty"`
 	Networks         []NetConf         `json:"networks,omitempty"`
 	Personality      map[string]string `json:"personality,omitempty"`
-	NetNames		 []string		   `json:"-"`
+	NetNames         []string          `json:"-"`
 }
 
 // fields unique to the server creation response
@@ -70,14 +72,16 @@ type SecurityGroup struct {
 }
 
 type Flavor struct {
-	core.OsObj
-	Disk  int `json:"disk,omitempty"`
-	Ram   int `json:"ram,omitempty"`
-	Vcpus int `json:"vcpus,omitempty"`
+	Name  string      `json:"name,omitempty"`
+	Id    string      `json:"id,omitempty"`
+	Links []core.Link `json:"links,omitempty"`
+	Disk  int         `json:"disk,omitempty"`
+	Ram   int         `json:"ram,omitempty"`
+	Vcpus int         `json:"vcpus,omitempty"`
 }
 
 type Keypair struct {
 	Fingerprint string `json:"fingerprint,omitempty"`
-	Name string `json:"name,omitempty"`
-	PublicKey string `json:"public_key,omitempty"`
+	Name        string `json:"name,omitempty"`
+	PublicKey   string `json:"public_key,omitempty"`
 }
