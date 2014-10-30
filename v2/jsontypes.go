@@ -45,13 +45,18 @@ type Address struct {
 
 // fields unique to server creation
 type ServerCreate struct {
-	UserData         string            `json:"user_data,omitempty"`
-	AvailabilityZone string            `json:"availability_zone,omitempty"`
-	ImageRef         string            `json:"imageRef,omitempty"`
-	FlavorRef        string            `json:"flavorRef,omitempty"`
-	Networks         []NetConf         `json:"networks,omitempty"`
-	Personality      map[string]string `json:"personality,omitempty"`
-	NetNames         []string          `json:"-"`
+	UserData         string        `json:"user_data,omitempty"`
+	AvailabilityZone string        `json:"availability_zone,omitempty"`
+	ImageRef         string        `json:"imageRef,omitempty"`
+	FlavorRef        string        `json:"flavorRef,omitempty"`
+	Networks         []NetConf     `json:"networks,omitempty"`
+	Personality      []Personality `json:"personality,omitempty"`
+	NetNames         []string      `json:"-"`
+}
+
+type Personality struct {
+	Path     string `json:"path,omitempty"`
+	Contents string `json:"contents,omitempty"`
 }
 
 // fields unique to the server creation response
