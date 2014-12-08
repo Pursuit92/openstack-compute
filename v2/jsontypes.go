@@ -90,3 +90,15 @@ type Keypair struct {
 	Name        string `json:"name,omitempty"`
 	PublicKey   string `json:"public_key,omitempty"`
 }
+
+type FloatingIPPool struct {
+	Name string `json:"name"`
+}
+
+type FloatingIP struct {
+	FixedIP    string `json:"fixed_ip"`
+	Id         string `json:"id"`
+	InstanceId string `json:"instance_id"`
+	IP         string `json:"ip"`
+	Pool       string `json:"pool"`
+}
